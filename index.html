@@ -14,224 +14,293 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- ESTÉTICA PRE-COLOMBINA / ANDINA --- */
+        /* --- ESTÉTICA CÓDICE ANDINO (FONDO BLANCO ACADÉMICO) --- */
         :root {
-            --bg-color: #1a120b;
-            --panel-bg: rgba(28, 25, 23, 0.95);
-            --panel-border: rgba(180, 83, 9, 0.3);
-            --text-main: #e7e5e4;
-            --text-gold: #d4a373;
+            --bg-color: #fafaf9; /* Hueso / Papel */
+            --panel-bg: #ffffff; /* Blanco Puro */
+            --panel-border: #d6d3d1; /* Gris piedra suave */
+            --text-main: #1c1917; /* Negro carbón */
+            --text-accent: #92400e; /* Terracota */
             
-            /* Colores de las 4 S (Tierras) */
-            --color-sus: #059669; 
-            --color-sob: #b91c1c; 
-            --color-sol: #d97706; 
-            --color-seg: #0284c7; 
+            /* Colores de las 4 S (Saturados para fondo blanco) */
+            --color-sus: #059669; /* Verde Jade */
+            --color-sob: #b91c1c; /* Rojo Cinabrio */
+            --color-sol: #d97706; /* Ocre */
+            --color-seg: #0369a1; /* Azul Profundo */
 
-            --critical: #be123c; 
+            --critical: #9f1239; 
             --protective: #15803d; 
         }
 
         body {
             font-family: 'Lato', sans-serif;
             background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 50% 0%, #292524 0%, #1a120b 100%);
+            /* Textura sutil de papel */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
             color: var(--text-main);
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
         }
 
-        h1, h2, h3, h4 { font-family: 'Merriweather', serif; letter-spacing: -0.5px; }
+        h1, h2, h3, h4 { font-family: 'Merriweather', serif; letter-spacing: -0.02em; }
 
-        /* ICONOGRAFÍA ANCESTRAL (AJUSTADA Y MÁS PEQUEÑA) */
-        .icon-bg { position: fixed; z-index: -1; opacity: 0.04; pointer-events: none; color: var(--text-gold); }
-        .chacana-shape { top: 5%; right: 5%; width: 250px; height: 250px; animation: spinSlow 240s linear infinite; }
-        .spiral-shape { bottom: 5%; left: 5%; width: 280px; height: 280px; animation: float 20s ease-in-out infinite; }
-        .muisca-triangles { top: 15%; left: 45%; width: 150px; height: 150px; opacity: 0.03; animation: pulse 10s infinite alternate; }
+        /* --- ICONOGRAFÍA ANCESTRAL (MARCAS DE AGUA TIERRA) --- */
+        .icon-bg { 
+            position: fixed; z-index: -1; 
+            opacity: 0.08; /* Muy sutil */
+            pointer-events: none; 
+            color: #78350f; /* Color Arcilla */
+        }
+        
+        .chacana-shape { 
+            top: 5%; right: -5%; width: 400px; height: 400px; 
+            animation: spinSlow 300s linear infinite; 
+        }
+        
+        .spiral-shape { 
+            bottom: 10%; left: -2%; width: 600px; height: 600px; 
+            color: #134e4a; /* Verde oscuro */
+            opacity: 0.05;
+            animation: float 20s ease-in-out infinite; 
+        }
+        
+        .muisca-triangles { 
+            top: 25%; right: 10%; width: 350px; height: 350px; 
+            color: #d97706; /* Ocre */
+            opacity: 0.06; 
+            animation: pulse 10s infinite alternate; 
+        }
 
         @keyframes spinSlow { 100% { transform: rotate(360deg); } }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-        @keyframes pulse { 0% { opacity: 0.03; } 100% { opacity: 0.06; } }
+        @keyframes pulse { 0% { opacity: 0.06; } 100% { opacity: 0.1; } }
 
-        /* PANELES */
+        /* PANELES "HOJA LIMPIA" */
         .adobe-panel {
             background: var(--panel-bg);
             border: 1px solid var(--panel-border);
+            border-top: 4px solid var(--text-accent); /* Detalle de color superior */
             border-radius: 4px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
         }
+        .adobe-panel:hover { box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08); }
 
         .adobe-input {
-            background: rgba(0, 0, 0, 0.3); border: 1px solid #44403c; color: #fff; font-family: 'Lato', sans-serif;
-            transition: all 0.3s ease; font-size: 0.85rem; line-height: 1.6; border-radius: 2px;
+            background: #f5f5f4; 
+            border: 1px solid #d6d3d1;
+            color: #1c1917;
+            font-family: 'Lato', sans-serif;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-radius: 2px;
         }
-        .adobe-input:focus { background: rgba(0, 0, 0, 0.6); border-color: var(--text-gold); outline: none; box-shadow: 0 0 0 1px rgba(212, 163, 115, 0.2); }
-        .adobe-input::placeholder { color: rgba(255, 255, 255, 0.3); font-style: italic; font-size: 0.8rem; }
+        .adobe-input:focus { 
+            background: #fff; 
+            border-color: var(--text-accent); 
+            outline: none; 
+            box-shadow: 0 0 0 3px rgba(146, 64, 14, 0.1); 
+        }
+        .adobe-input::placeholder { color: #a8a29e; font-style: italic; }
 
-        /* NAVEGACIÓN */
-        .nav-btn { color: #78716c; border-bottom: 2px solid transparent; font-family: 'Merriweather', serif; font-size: 0.8rem; letter-spacing: 1px; padding: 8px 16px; transition: all 0.3s; }
-        .nav-btn:hover { color: #d6d3d1; }
-        .nav-btn.active { color: var(--text-gold); border-bottom: 2px solid var(--text-gold); }
+        /* NAVEGACIÓN "CINTA" */
+        .nav-btn { 
+            color: #78716c; 
+            border-bottom: 3px solid transparent; 
+            font-family: 'Merriweather', serif; 
+            font-size: 0.85rem; 
+            font-weight: 700; 
+            letter-spacing: 0.5px; 
+            padding: 10px 20px; 
+            transition: all 0.3s; 
+        }
+        .nav-btn:hover { color: #44403c; background-color: rgba(0,0,0,0.02); }
+        .nav-btn.active { 
+            color: #92400e; 
+            border-bottom: 3px solid #92400e; 
+            background-color: #fff7ed; 
+        }
 
-        /* BOTONES */
+        /* BOTONES DE ACCIÓN */
         .btn-ancestral {
-            background: transparent; color: var(--text-gold); border: 1px solid var(--text-gold);
-            font-family: 'Merriweather', serif; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px;
-            padding: 10px 24px; transition: all 0.3s; border-radius: 2px;
+            background: linear-gradient(to bottom, #d97706, #b45309);
+            color: #fff; 
+            border: 1px solid #92400e;
+            box-shadow: 0 2px 0 #78350f;
+            font-family: 'Merriweather', serif; 
+            text-transform: uppercase; 
+            font-size: 0.75rem; 
+            letter-spacing: 1px; 
+            font-weight: bold;
+            padding: 10px 24px; 
+            transition: all 0.1s; 
+            border-radius: 4px;
         }
-        .btn-ancestral:hover { background: rgba(212, 163, 115, 0.1); color: #fff; box-shadow: 0 0 15px rgba(212, 163, 115, 0.2); }
+        .btn-ancestral:hover { filter: brightness(1.1); transform: translateY(-1px); }
+        .btn-ancestral:active { transform: translateY(2px); box-shadow: 0 0 0 #78350f; }
+        
+        /* Botones Sutiles */
+        .btn-subtle {
+            background: white; color: #78350f; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;
+            padding: 6px 12px; border: 1px solid #d6d3d1; border-radius: 4px; transition: all 0.2s;
+        }
+        .btn-subtle:hover { border-color: #b45309; color: #b45309; background: #fff7ed; }
 
         /* TABLA SÍNTESIS */
-        .synthesis-table { border-collapse: collapse; width: 100%; font-size: 0.8rem; }
-        .synthesis-table th { background: rgba(0, 0, 0, 0.4); color: var(--text-gold); font-weight: normal; letter-spacing: 1px; padding: 15px; border-bottom: 1px solid var(--panel-border); text-align: left; }
-        .synthesis-table td { padding: 15px; border-bottom: 1px solid #292524; color: #a8a29e; vertical-align: top; }
-        .synthesis-table .row-header { color: #e7e5e4; font-weight: bold; border-right: 1px solid #292524; }
+        .synthesis-table { border-collapse: collapse; width: 100%; font-size: 0.85rem; border: 1px solid #e5e7eb; }
+        .synthesis-table th { background: #fffbeb; color: #92400e; font-weight: bold; padding: 15px; border-bottom: 2px solid #d97706; text-align: left; }
+        .synthesis-table td { padding: 15px; border-bottom: 1px solid #e5e7eb; color: #44403c; vertical-align: top; }
+        .synthesis-table .row-header { background: #fafaf9; color: #78350f; font-weight: bold; border-right: 1px solid #e5e7eb; }
         
-        .tag { display: inline-block; padding: 2px 8px; border-radius: 2px; font-size: 0.65rem; margin: 2px; color: white; letter-spacing: 0.5px; }
-        .tag-crit { background: rgba(190, 18, 60, 0.2); border: 1px solid #be123c; color: #fda4af; }
-        .tag-prot { background: rgba(21, 128, 61, 0.2); border: 1px solid #15803d; color: #86efac; }
+        .tag { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; margin: 3px; font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        .tag-crit { background: #ffe4e6; border: 1px solid #fda4af; color: #9f1239; }
+        .tag-prot { background: #dcfce7; border: 1px solid #86efac; color: #166534; }
 
-        /* GRÁFICA SUBSUNCIÓN "ORFEBRERÍA" */
-        .subsumption-wrapper { height: 400px; position: relative; display: flex; justify-content: center; align-items: center; margin: 0 auto; }
+        /* GRÁFICA SUBSUNCIÓN "DIBUJO TÉCNICO FINO" */
+        .subsumption-wrapper { height: 420px; position: relative; display: flex; justify-content: center; align-items: center; margin: 0 auto; }
         
         .circle-general {
-            width: 320px; height: 320px;
-            border: 1px solid rgba(180, 83, 9, 0.4);
-            box-shadow: 0 0 0 1px rgba(0,0,0,0.2), inset 0 0 20px rgba(0,0,0,0.5);
+            width: 380px; height: 380px;
+            border: 2px dashed #d97706; /* Borde Ocre */
             border-radius: 50%; position: relative; display: flex; justify-content: center; align-items: center;
+            background: rgba(255, 251, 235, 0.5); /* Crema muy suave */
         }
         .circle-particular {
-            width: 220px; height: 220px;
-            border: 1px solid rgba(13, 148, 136, 0.4);
-            background: rgba(13, 148, 136, 0.02);
+            width: 250px; height: 250px;
+            border: 2px dashed #0d9488; /* Borde Turquesa */
             border-radius: 50%; position: relative; display: flex; justify-content: center; align-items: center;
+            background: rgba(240, 253, 250, 0.5); /* Cian muy suave */
         }
         .circle-individual {
             width: 120px; height: 120px;
-            border: 1px solid rgba(245, 158, 11, 0.6);
-            background: rgba(245, 158, 11, 0.05);
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.1);
+            border: 2px solid #f59e0b; /* Borde Oro */
             border-radius: 50%; position: relative; display: flex; justify-content: center; align-items: center;
+            background: #ffffff;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.1);
         }
 
         .circle-label {
-            position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
-            font-family: 'Lato', sans-serif; font-weight: 300; font-size: 0.55rem; letter-spacing: 2px;
-            background: #1a120b; padding: 2px 6px; border: 1px solid #44403c; border-radius: 2px;
-            text-transform: uppercase; color: #a8a29e; z-index: 5;
+            position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+            font-family: 'Merriweather', serif; font-weight: 700; font-size: 0.6rem; letter-spacing: 1px;
+            background: #fff; padding: 2px 8px; border: 1px solid #d6d3d1; border-radius: 15px;
+            text-transform: uppercase; color: #78350f; z-index: 5; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         #ring-g, #ring-p, #ring-i { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
         
         .sub-tag {
-            display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin: 0; cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); position: absolute; z-index: 50;
-            box-shadow: 0 0 0 1px rgba(255,255,255,0.2); pointer-events: auto;
+            display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin: 0; cursor: pointer;
+            transition: all 0.3s ease; position: absolute; z-index: 50;
+            box-shadow: 0 0 0 1px #fff, 0 2px 4px rgba(0,0,0,0.2); pointer-events: auto;
         }
-        .sub-tag:hover { transform: scale(3); z-index: 100; box-shadow: 0 0 10px var(--text-gold); border-color: white; }
+        .sub-tag:hover { transform: scale(3); z-index: 100; border-color: #78350f; }
         .sub-tag .tooltip {
-            visibility: hidden; width: 220px; background-color: #292524; color: #e7e5e4; text-align: center;
-            border-radius: 2px; padding: 8px 12px; position: absolute; z-index: 101; bottom: 200%; left: 50%;
-            margin-left: -100px; opacity: 0; transition: opacity 0.2s; font-size: 0.7rem; pointer-events: none;
-            border: 1px solid #57534e; box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+            visibility: hidden; width: 220px; background-color: #292524; color: #f5f5f4; text-align: center;
+            border-radius: 4px; padding: 10px; position: absolute; z-index: 101; bottom: 160%; left: 50%;
+            margin-left: -110px; opacity: 0; transition: opacity 0.2s; font-size: 0.75rem; pointer-events: none;
+            border: 1px solid #a8a29e; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
         .sub-tag:hover .tooltip { visibility: visible; opacity: 1; }
 
-        /* HIMUPAC SELECTION */
-        .selectable-item { cursor: pointer; transition: all 0.2s; border: 1px solid #44403c; border-radius: 4px; }
-        .selectable-item:hover { background-color: rgba(255, 255, 255, 0.05); border-color: #a8a29e; }
-        .selectable-item.selected { background-color: rgba(245, 158, 11, 0.1); border-color: var(--text-gold); }
-        
+        /* HIMUPAC */
         .him-chip {
-            background: transparent; border: 1px solid #78350f; color: #d4a373;
-            padding: 4px 10px; border-radius: 15px; font-size: 0.7rem; display: flex; align-items: center; gap: 8px;
-            transition: all 0.2s;
+            background: #fff7ed; border: 1px solid #f97316; color: #9a3412;
+            padding: 4px 10px; border-radius: 15px; font-size: 0.75rem; display: flex; align-items: center; gap: 8px;
+            font-weight: bold;
         }
-        
+        .selectable-item { cursor: pointer; transition: all 0.2s; border: 1px solid #e5e7eb; border-radius: 4px; background: white; }
+        .selectable-item:hover { background-color: #fff7ed; border-color: #f59e0b; }
+        .selectable-item.selected { background-color: #fffbeb; border-color: #d97706; box-shadow: inset 0 0 0 1px #d97706; }
+
         /* OVERLAY PDF */
         #pdf-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white !important; color: black !important; z-index: 9999999; overflow-y: auto; font-family: 'Merriweather', serif; }
+        
         .btn-next {
-            background: transparent; color: #a8a29e; font-size: 0.8rem; letter-spacing: 1px;
-            padding: 10px 20px; border: 1px solid #44403c; border-radius: 30px;
+            background: white; color: #78350f; font-size: 0.8rem; letter-spacing: 1px;
+            padding: 10px 24px; border: 1px solid #78350f; border-radius: 30px;
             transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px;
             margin-top: 3rem; margin-bottom: 2rem; cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
-        .btn-next:hover { border-color: var(--text-gold); color: var(--text-gold); }
+        .btn-next:hover { background: #fff7ed; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
     </style>
 </head>
 <body class="antialiased">
 
+    <!-- FONDOS VECTORIALES (Marcas de Agua Sutiles) -->
     <div class="icon-bg chacana-shape"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1"><path d="M40,0 L60,0 L60,20 L80,20 L80,40 L100,40 L100,60 L80,60 L80,80 L60,80 L60,100 L40,100 L40,80 L20,80 L20,60 L0,60 L0,40 L20,40 L20,20 L40,20 Z"/></svg></div>
-    <div class="icon-bg spiral-shape"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1"><path d="M50 50 m 0 0 a 5 5 0 0 1 10 0 a 10 10 0 0 1 -20 0 a 15 15 0 0 1 30 0 a 20 20 0 0 1 -40 0 a 25 25 0 0 1 50 0"/></svg></div>
-    <div class="icon-bg muisca-triangles"><svg viewBox="0 0 100 100" fill="currentColor"><polygon points="50,10 90,90 10,90" fill="none" stroke="currentColor" stroke-width="2"/><polygon points="50,25 75,75 25,75" opacity="0.5"/><polygon points="50,0 60,20 40,20" /><polygon points="10,90 20,70 0,70" /><polygon points="90,90 100,70 80,70" /></svg></div>
+    <div class="icon-bg spiral-shape"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3"><path d="M50 50 m 0 0 a 5 5 0 0 1 10 0 a 10 10 0 0 1 -20 0 a 15 15 0 0 1 30 0 a 20 20 0 0 1 -40 0 a 25 25 0 0 1 50 0"/></svg></div>
+    <div class="icon-bg muisca-triangles"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="50,10 90,90 10,90"/><polygon points="50,25 75,75 25,75" opacity="0.5"/><polygon points="50,0 60,20 40,20"/><polygon points="10,90 20,70 0,70"/><polygon points="90,90 100,70 80,70"/></svg></div>
 
-    <div class="max-w-[1000px] mx-auto py-12 min-h-screen flex flex-col px-4">
+    <div class="w-full px-8 md:px-12 py-10 min-h-screen flex flex-col max-w-[1920px] mx-auto">
         
-        <header class="flex flex-col md:flex-row justify-between items-center mb-10 pb-6 border-b border-stone-800">
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row justify-between items-center mb-8 adobe-panel p-8 bg-white">
             <div>
-                <h1 class="text-3xl md:text-4xl font-black text-amber-500/90 tracking-tight flex items-center gap-3">
-                    <svg class="w-8 h-8 text-amber-700" viewBox="0 0 100 100" fill="currentColor"><path d="M40,0 L60,0 L60,20 L80,20 L80,40 L100,40 L100,60 L80,60 L80,80 L60,80 L60,100 L40,100 L40,80 L20,80 L20,60 L0,60 L0,40 L20,40 L20,20 L40,20 Z"/></svg>
+                <h1 class="text-3xl md:text-4xl font-black text-amber-800 tracking-tight flex items-center gap-3">
+                    <svg class="w-10 h-10 text-amber-600" viewBox="0 0 100 100" fill="currentColor"><path d="M40,0 L60,0 L60,20 L80,20 L80,40 L100,40 L100,60 L80,60 L80,80 L60,80 L60,100 L40,100 L40,80 L20,80 L20,60 L0,60 L0,40 L20,40 L20,20 L40,20 Z"/></svg>
                     Epidemiología Crítica
                 </h1>
-                <p class="text-sm text-stone-500 mt-2 font-light tracking-wide pl-11 uppercase">Instrumento de Determinación Social & HiMupAC</p>
+                <p class="text-sm text-stone-500 mt-2 font-light tracking-wide pl-14 uppercase">Instrumento de Determinación Social & HiMupAC</p>
             </div>
             <div class="text-right hidden md:block mt-4 md:mt-0">
-                <p class="font-bold text-stone-400 text-sm">Modelo Dialéctico</p>
-                <p class="text-xs text-stone-600 font-serif italic">Jaime Breilh (2003/2023)</p>
+                <p class="font-bold text-stone-700 text-sm uppercase tracking-wide">Modelo Dialéctico</p>
+                <p class="text-xs text-stone-500 font-serif italic">Jaime Breilh (2003/2023)</p>
             </div>
         </header>
 
-        <nav class="adobe-panel p-3 mb-8 flex overflow-x-auto gap-6 justify-center">
-            <button onclick="switchTab('instrucciones')" id="btn-instrucciones" class="nav-btn active">Conceptos</button>
-            <button onclick="switchTab('diligenciar')" id="btn-diligenciar" class="nav-btn">Matriz</button>
-            <button onclick="switchTab('visualizar')" id="btn-visualizar" class="nav-btn">Síntesis</button>
-            <button onclick="switchTab('recomendaciones')" id="btn-recomendaciones" class="nav-btn">Praxis</button>
-            <button onclick="switchTab('himupac')" id="btn-himupac" class="nav-btn text-amber-600/80">HiMupAC</button>
+        <!-- Navegación -->
+        <nav class="adobe-panel p-2 mb-10 flex overflow-x-auto gap-4 justify-center bg-white sticky top-2 z-40 shadow-sm">
+            <button onclick="switchTab('instrucciones')" id="btn-instrucciones" class="nav-btn active">1. Conceptos</button>
+            <button onclick="switchTab('diligenciar')" id="btn-diligenciar" class="nav-btn">2. Matriz</button>
+            <button onclick="switchTab('visualizar')" id="btn-visualizar" class="nav-btn">3. Síntesis</button>
+            <button onclick="switchTab('recomendaciones')" id="btn-recomendaciones" class="nav-btn">4. Praxis</button>
+            <button onclick="switchTab('himupac')" id="btn-himupac" class="nav-btn text-amber-700 font-bold border border-amber-200 bg-amber-50 rounded px-4">5. HiMupAC</button>
         </nav>
 
-        <main class="flex-grow">
+        <main class="flex-grow w-full">
             <!-- 1. CONCEPTOS -->
             <section id="instrucciones" class="tab-content block animate-fade-in pb-10">
-                <div class="adobe-panel p-10 mb-10 border-l-2 border-red-900/50">
-                    <h2 class="text-2xl font-bold text-stone-200 mb-6 font-serif">Ruptura Epistemológica: Más allá de la Causalidad Lineal</h2>
-                    <p class="text-stone-400 leading-relaxed text-lg font-light">
-                        La epidemiología convencional suele ver la salud como una suma de "factores de riesgo" desconectados (Causalidad Lineal: A causa B). 
-                        Esta herramienta te invita a pensar desde la <strong class="text-amber-500/80">Determinación Social</strong>. No buscamos culpables individuales, 
-                        buscamos la <strong class="text-stone-300">lógica histórica y estructural</strong> (acumulación de capital, poder, cultura) que hace posible que la enfermedad florezca en un territorio.
+                <div class="adobe-panel p-10 mb-10 border-l-4 border-red-700 bg-white">
+                    <h2 class="text-2xl font-bold text-stone-800 mb-6 font-serif">Ruptura Epistemológica</h2>
+                    <p class="text-stone-600 leading-relaxed text-lg font-light">
+                        La epidemiología convencional suele ver la salud como una suma de "factores de riesgo" desconectados. 
+                        Esta herramienta te invita a pensar desde la <strong class="text-amber-700">Determinación Social</strong>. No buscamos culpables individuales, 
+                        buscamos la <strong class="text-stone-800">lógica histórica y estructural</strong> que hace posible que la enfermedad florezca en un territorio.
                     </p>
                 </div>
                 
                 <div class="grid md:grid-cols-2 gap-8 mb-12">
-                    <div class="adobe-panel p-8 opacity-80 border border-stone-800">
+                    <div class="adobe-panel p-8 bg-stone-50 border border-stone-200">
                         <h3 class="text-sm font-bold text-stone-500 mb-4 uppercase tracking-widest">Paradigma Convencional</h3>
-                        <ul class="space-y-4 text-sm text-stone-400 list-disc pl-5 marker:text-red-900">
+                        <ul class="space-y-4 text-sm text-stone-600 list-disc pl-5 marker:text-red-700">
                             <li>Fragmenta la realidad en variables sueltas ("riesgos").</li>
                             <li>Se centra en el individuo descontextualizado.</li>
                             <li>Usa la asociación estadística simple (correlación).</li>
                         </ul>
                     </div>
-                    <div class="adobe-panel p-8 border border-teal-900/30 bg-teal-900/5">
-                        <h3 class="text-sm font-bold text-teal-600 mb-4 uppercase tracking-widest">Epidemiología Crítica</h3>
-                        <ul class="space-y-4 text-sm text-stone-300 list-disc pl-5 marker:text-teal-600">
+                    <div class="adobe-panel p-8 border border-teal-200 bg-teal-50">
+                        <h3 class="text-sm font-bold text-teal-700 mb-4 uppercase tracking-widest">Epidemiología Crítica</h3>
+                        <ul class="space-y-4 text-sm text-stone-600 list-disc pl-5 marker:text-teal-600">
                             <li>Ve la realidad como un sistema complejo de procesos anidados.</li>
                             <li>Conecta lo estructural (General) con lo corporal (Individual).</li>
-                            <li>Usa la <strong>Meta-inferencia</strong>: Leer el dato visible para entender la lógica invisible.</li>
+                            <li>Usa la <strong>Meta-inferencia</strong>.</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="adobe-panel p-8 mb-8">
-                    <h3 class="text-lg font-bold text-amber-600/80 mb-6 font-serif">Guía de Dominios (Meta-inferencia)</h3>
+                <div class="adobe-panel p-8 mb-8 bg-white">
+                    <h3 class="text-lg font-bold text-amber-700 mb-6 font-serif">Guía de Dominios</h3>
                     <div class="overflow-x-auto">
                         <table class="w-full text-sm synthesis-table">
                             <thead><tr><th width="30%">Dimensión</th><th>Pregunta Orientadora</th></tr></thead>
                             <tbody>
-                                <tr><td><strong class="text-red-400">GENERAL (G)</strong><br><span class="text-xs text-stone-500">Lógica Estructural</span></td><td class="text-stone-400">¿Qué políticas nacionales, modelos económicos globales, leyes o imposiciones culturales hegemónicas determinan las reglas del juego en este territorio? (Lo que nos condiciona a todos).</td></tr>
-                                <tr><td><strong class="text-teal-400">PARTICULAR (P)</strong><br><span class="text-xs text-stone-500">Modos de Vida</span></td><td class="text-stone-400">¿Cómo vive, trabaja y se organiza el grupo social específico? ¿Cuáles son sus patrones de exposición colectiva, sus redes de apoyo y sus condiciones barriales/laborales?</td></tr>
-                                <tr><td><strong class="text-green-400">INDIVIDUAL (I)</strong><br><span class="text-xs text-stone-500">Estilos y Fenotipo</span></td><td class="text-stone-400">¿Cómo se encarnan (se hacen cuerpo) estos procesos en la biología, la psiquis y el sufrimiento de las personas? (Genotipo + Fenotipo + Estilos personales).</td></tr>
+                                <tr><td><strong class="text-red-600">GENERAL (G)</strong><br><span class="text-xs text-stone-500">Lógica Estructural</span></td><td class="text-stone-600">¿Qué políticas nacionales, modelos económicos globales, leyes o imposiciones culturales hegemónicas determinan las reglas del juego en este territorio?</td></tr>
+                                <tr><td><strong class="text-teal-600">PARTICULAR (P)</strong><br><span class="text-xs text-stone-500">Modos de Vida</span></td><td class="text-stone-600">¿Cómo vive, trabaja y se organiza el grupo social específico? ¿Cuáles son sus patrones de exposición colectiva?</td></tr>
+                                <tr><td><strong class="text-green-600">INDIVIDUAL (I)</strong><br><span class="text-xs text-stone-500">Estilos y Fenotipo</span></td><td class="text-stone-600">¿Cómo se encarnan estos procesos en la biología, la psiquis y el sufrimiento de las personas?</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -242,77 +311,78 @@
             <!-- 2. MATRIZ -->
             <section id="diligenciar" class="tab-content hidden pb-10">
                 <div class="flex flex-wrap justify-between items-center mb-6 gap-4">
-                    <h2 class="text-xl font-bold text-stone-300 font-serif">Laboratorio Territorial</h2>
-                    <input type="text" id="territory-input" placeholder="Nombre del Territorio..." class="adobe-input px-4 py-2 w-72">
+                    <h2 class="text-xl font-bold text-stone-700 font-serif">Laboratorio Territorial</h2>
+                    <input type="text" id="territory-input" placeholder="Nombre del Territorio..." class="adobe-input px-4 py-2 w-72 bg-white">
                 </div>
-                
+                <p class="text-xs text-stone-500 mb-6 bg-stone-100 p-2 rounded inline-block border border-stone-300">📝 Use los botones: <strong class="text-red-600">Malsano (Destructivo)</strong> o <strong class="text-green-600">Protector (Benéfico)</strong>.</p>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 pb-10">
                     <!-- Sustentabilidad -->
-                    <div class="adobe-panel p-6 border-t-2 border-emerald-800/50"><h3 class="text-sm font-bold text-emerald-600 mb-6 flex items-center gap-2 uppercase tracking-widest"><span class="text-xl">🌱</span> Sustentabilidad</h3>
-                        <div class="mb-6"><label class="text-[0.65rem] text-stone-500 font-bold uppercase block mb-2">G - General</label><div id="list-sus-g" class="space-y-1 mb-2"></div><textarea id="input-sus-g" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Lógica de acumulación que depreda la naturaleza (minería a gran escala, agroindustria), políticas de flexibilidad ambiental..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('sus-g', 'destructive')" class="text-red-400 hover:text-red-300 text-xs uppercase font-bold">Malsano +</button><button onclick="addProcess('sus-g', 'protective')" class="text-emerald-400 hover:text-emerald-300 text-xs uppercase font-bold ml-2">Protector +</button></div></div>
-                        <div class="mb-6"><label class="text-[0.65rem] text-stone-500 font-bold uppercase block mb-2">P - Particular</label><div id="list-sus-p" class="space-y-1 mb-2"></div><textarea id="input-sus-p" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Exposición grupal a contaminantes (barrio industrial), falta de acceso a agua potable colectiva..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('sus-p', 'destructive')" class="text-red-400 hover:text-red-300 text-xs uppercase font-bold">Malsano +</button><button onclick="addProcess('sus-p', 'protective')" class="text-emerald-400 hover:text-emerald-300 text-xs uppercase font-bold ml-2">Protector +</button></div></div>
-                        <div class="mb-6"><label class="text-[0.65rem] text-stone-500 font-bold uppercase block mb-2">I - Individual</label><div id="list-sus-i" class="space-y-1 mb-2"></div><textarea id="input-sus-i" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Carga corporal de metales pesados, disrupción endocrina, enfermedades respiratorias..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('sus-i', 'destructive')" class="text-red-400 hover:text-red-300 text-xs uppercase font-bold">Malsano +</button><button onclick="addProcess('sus-i', 'protective')" class="text-emerald-400 hover:text-emerald-300 text-xs uppercase font-bold ml-2">Protector +</button></div></div>
+                    <div class="adobe-panel p-6 border-t-4 border-emerald-600 bg-white"><h3 class="text-sm font-bold text-emerald-700 mb-6 flex items-center gap-2 uppercase tracking-widest"><span class="text-xl">🌱</span> Sustentabilidad</h3>
+                        <div class="mb-6"><label class="text-[0.65rem] text-stone-400 font-bold uppercase block mb-2">G - General</label><div id="list-sus-g" class="space-y-1 mb-2"></div><textarea id="input-sus-g" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Lógica de acumulación que depreda la naturaleza (minería a gran escala, agroindustria), políticas de flexibilidad ambiental..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('sus-g', 'destructive')" class="btn-subtle text-red-600 border-red-200 hover:bg-red-50">Malsano +</button><button onclick="addProcess('sus-g', 'protective')" class="btn-subtle text-emerald-600 border-emerald-200 hover:bg-emerald-50 ml-2">Protector +</button></div></div>
+                        <div class="mb-6"><label class="text-[0.65rem] text-stone-400 font-bold uppercase block mb-2">P - Particular</label><div id="list-sus-p" class="space-y-1 mb-2"></div><textarea id="input-sus-p" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Exposición grupal a contaminantes (barrio industrial), falta de acceso a agua potable colectiva..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('sus-p', 'destructive')" class="btn-subtle text-red-600 border-red-200 hover:bg-red-50">Malsano +</button><button onclick="addProcess('sus-p', 'protective')" class="btn-subtle text-emerald-600 border-emerald-200 hover:bg-emerald-50 ml-2">Protector +</button></div></div>
+                        <div class="mb-6"><label class="text-[0.65rem] text-stone-400 font-bold uppercase block mb-2">I - Individual</label><div id="list-sus-i" class="space-y-1 mb-2"></div><textarea id="input-sus-i" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Carga corporal de metales pesados, disrupción endocrina, enfermedades respiratorias..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('sus-i', 'destructive')" class="btn-subtle text-red-600 border-red-200 hover:bg-red-50">Malsano +</button><button onclick="addProcess('sus-i', 'protective')" class="btn-subtle text-emerald-600 border-emerald-200 hover:bg-emerald-50 ml-2">Protector +</button></div></div>
                     </div>
                     <!-- Soberanía -->
-                    <div class="adobe-panel p-6 border-t-2 border-purple-800/50"><h3 class="text-sm font-bold text-purple-500 mb-6 flex items-center gap-2 uppercase tracking-widest"><span class="text-xl">✊</span> Soberanía</h3>
-                        <div class="mb-6"><label class="text-[0.65rem] text-stone-500 font-bold uppercase block mb-2">G - General</label><div id="list-sob-g" class="space-y-1 mb-2"></div><textarea id="input-sob-g" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Pérdida de soberanía nacional ante deuda externa, políticas impositivas regresivas..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('sob-g', 'destructive')" class="text-red-400 hover:text-red-300 text-xs uppercase font-bold">Malsano +</button><button onclick="addProcess('sob-g', 'protective')" class="text-emerald-400 hover:text-emerald-300 text-xs uppercase font-bold ml-2">Protector +</button></div></div>
-                        <div class="mb-6"><label class="text-[0.65rem] text-stone-500 font-bold uppercase block mb-2">P - Particular</label><div id="list-sob-p" class="space-y-1 mb-2"></div><textarea id="input-sob-p" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Debilitamiento de organizaciones gremiales/sindicales, falta de consulta previa..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('sob-p', 'destructive')" class="text-red-400 hover:text-red-300 text-xs uppercase font-bold">Malsano +</button><button onclick="addProcess('sob-p', 'protective')" class="text-emerald-400 hover:text-emerald-300 text-xs uppercase font-bold ml-2">Protector +</button></div></div>
-                        <div class="mb-6"><label class="text-[0.65rem] text-stone-500 font-bold uppercase block mb-2">I - Individual</label><div id="list-sob-i" class="space-y-1 mb-2"></div><textarea id="input-sob-i" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Pérdida de autonomía sobre el propio trabajo, desconocimiento de derechos..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('sob-i', 'destructive')" class="text-red-400 hover:text-red-300 text-xs uppercase font-bold">Malsano +</button><button onclick="addProcess('sob-i', 'protective')" class="text-emerald-400 hover:text-emerald-300 text-xs uppercase font-bold ml-2">Protector +</button></div></div>
+                    <div class="adobe-panel p-6 border-t-4 border-purple-600 bg-white"><h3 class="text-sm font-bold text-purple-700 mb-6 flex items-center gap-2 uppercase tracking-widest"><span class="text-xl">✊</span> Soberanía</h3>
+                        <div class="mb-6"><label class="text-[0.65rem] text-stone-400 font-bold uppercase block mb-2">G - General</label><div id="list-sob-g" class="space-y-1 mb-2"></div><textarea id="input-sob-g" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Pérdida de soberanía nacional ante deuda externa, políticas impositivas regresivas..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('sob-g', 'destructive')" class="btn-subtle text-red-600 border-red-200 hover:bg-red-50">Malsano +</button><button onclick="addProcess('sob-g', 'protective')" class="btn-subtle text-emerald-600 border-emerald-200 hover:bg-emerald-50 ml-2">Protector +</button></div></div>
+                        <div class="mb-6"><label class="text-[0.65rem] text-stone-400 font-bold uppercase block mb-2">P - Particular</label><div id="list-sob-p" class="space-y-1 mb-2"></div><textarea id="input-sob-p" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Debilitamiento de organizaciones gremiales/sindicales, falta de consulta previa..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('sob-p', 'destructive')" class="btn-subtle text-red-600 border-red-200 hover:bg-red-50">Malsano +</button><button onclick="addProcess('sob-p', 'protective')" class="btn-subtle text-emerald-600 border-emerald-200 hover:bg-emerald-50 ml-2">Protector +</button></div></div>
+                        <div class="mb-6"><label class="text-[0.65rem] text-stone-400 font-bold uppercase block mb-2">I - Individual</label><div id="list-sob-i" class="space-y-1 mb-2"></div><textarea id="input-sob-i" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Pérdida de autonomía sobre el propio trabajo, desconocimiento de derechos..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('sob-i', 'destructive')" class="btn-subtle text-red-600 border-red-200 hover:bg-red-50">Malsano +</button><button onclick="addProcess('sob-i', 'protective')" class="btn-subtle text-emerald-600 border-emerald-200 hover:bg-emerald-50 ml-2">Protector +</button></div></div>
                     </div>
                     <!-- Solidaridad -->
-                    <div class="adobe-panel p-6 border-t-2 border-amber-800/50"><h3 class="text-sm font-bold text-amber-600 mb-6 flex items-center gap-2 uppercase tracking-widest"><span class="text-xl">🤝</span> Solidaridad</h3>
-                        <div class="mb-6"><label class="text-[0.65rem] text-stone-500 font-bold uppercase block mb-2">G - General</label><div id="list-sol-g" class="space-y-1 mb-2"></div><textarea id="input-sol-g" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Cultura hegemónica del consumismo e individualismo, erosión de derechos colectivos..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('sol-g', 'destructive')" class="text-red-400 hover:text-red-300 text-xs uppercase font-bold">Malsano +</button><button onclick="addProcess('sol-g', 'protective')" class="text-emerald-400 hover:text-emerald-300 text-xs uppercase font-bold ml-2">Protector +</button></div></div>
-                        <div class="mb-6"><label class="text-[0.65rem] text-stone-500 font-bold uppercase block mb-2">P - Particular</label><div id="list-sol-p" class="space-y-1 mb-2"></div><textarea id="input-sol-p" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Ruptura del tejido social barrial, violencia doméstica normalizada, redes de cuidado solidario..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('sol-p', 'destructive')" class="text-red-400 hover:text-red-300 text-xs uppercase font-bold">Malsano +</button><button onclick="addProcess('sol-p', 'protective')" class="text-emerald-400 hover:text-emerald-300 text-xs uppercase font-bold ml-2">Protector +</button></div></div>
-                        <div class="mb-6"><label class="text-[0.65rem] text-stone-500 font-bold uppercase block mb-2">I - Individual</label><div id="list-sol-i" class="space-y-1 mb-2"></div><textarea id="input-sol-i" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Alienación, soledad profunda, angustia existencial, trastornos de salud mental..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('sol-i', 'destructive')" class="text-red-400 hover:text-red-300 text-xs uppercase font-bold">Malsano +</button><button onclick="addProcess('sol-i', 'protective')" class="text-emerald-400 hover:text-emerald-300 text-xs uppercase font-bold ml-2">Protector +</button></div></div>
+                    <div class="adobe-panel p-6 border-t-4 border-amber-600 bg-white"><h3 class="text-sm font-bold text-amber-700 mb-6 flex items-center gap-2 uppercase tracking-widest"><span class="text-xl">🤝</span> Solidaridad</h3>
+                        <div class="mb-6"><label class="text-[0.65rem] text-stone-400 font-bold uppercase block mb-2">G - General</label><div id="list-sol-g" class="space-y-1 mb-2"></div><textarea id="input-sol-g" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Cultura hegemónica del consumismo e individualismo, erosión de derechos colectivos..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('sol-g', 'destructive')" class="btn-subtle text-red-600 border-red-200 hover:bg-red-50">Malsano +</button><button onclick="addProcess('sol-g', 'protective')" class="btn-subtle text-emerald-600 border-emerald-200 hover:bg-emerald-50 ml-2">Protector +</button></div></div>
+                        <div class="mb-6"><label class="text-[0.65rem] text-stone-400 font-bold uppercase block mb-2">P - Particular</label><div id="list-sol-p" class="space-y-1 mb-2"></div><textarea id="input-sol-p" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Ruptura del tejido social barrial, violencia doméstica normalizada..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('sol-p', 'destructive')" class="btn-subtle text-red-600 border-red-200 hover:bg-red-50">Malsano +</button><button onclick="addProcess('sol-p', 'protective')" class="btn-subtle text-emerald-600 border-emerald-200 hover:bg-emerald-50 ml-2">Protector +</button></div></div>
+                        <div class="mb-6"><label class="text-[0.65rem] text-stone-400 font-bold uppercase block mb-2">I - Individual</label><div id="list-sol-i" class="space-y-1 mb-2"></div><textarea id="input-sol-i" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Alienación, soledad profunda, angustia existencial..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('sol-i', 'destructive')" class="btn-subtle text-red-600 border-red-200 hover:bg-red-50">Malsano +</button><button onclick="addProcess('sol-i', 'protective')" class="btn-subtle text-emerald-600 border-emerald-200 hover:bg-emerald-50 ml-2">Protector +</button></div></div>
                     </div>
                     <!-- Seguridad -->
-                    <div class="adobe-panel p-6 border-t-2 border-blue-800/50"><h3 class="text-sm font-bold text-blue-500 mb-6 flex items-center gap-2 uppercase tracking-widest"><span class="text-xl">🛡️</span> Seguridad</h3>
-                        <div class="mb-6"><label class="text-[0.65rem] text-stone-500 font-bold uppercase block mb-2">G - General</label><div id="list-seg-g" class="space-y-1 mb-2"></div><textarea id="input-seg-g" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Privatización de la salud y pensiones, violencia estructural del estado, impunidad sistémica..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('seg-g', 'destructive')" class="text-red-400 hover:text-red-300 text-xs uppercase font-bold">Malsano +</button><button onclick="addProcess('seg-g', 'protective')" class="text-emerald-400 hover:text-emerald-300 text-xs uppercase font-bold ml-2">Protector +</button></div></div>
-                        <div class="mb-6"><label class="text-[0.65rem] text-stone-500 font-bold uppercase block mb-2">P - Particular</label><div id="list-seg-p" class="space-y-1 mb-2"></div><textarea id="input-seg-p" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Vulnerabilidad ante desastres naturales, precarización de la seguridad laboral..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('seg-p', 'destructive')" class="text-red-400 hover:text-red-300 text-xs uppercase font-bold">Malsano +</button><button onclick="addProcess('seg-p', 'protective')" class="text-emerald-400 hover:text-emerald-300 text-xs uppercase font-bold ml-2">Protector +</button></div></div>
-                        <div class="mb-6"><label class="text-[0.65rem] text-stone-500 font-bold uppercase block mb-2">I - Individual</label><div id="list-seg-i" class="space-y-1 mb-2"></div><textarea id="input-seg-i" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Desnutrición crónica, inmunodepresión, trauma físico/psicológico por violencia..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('seg-i', 'destructive')" class="text-red-400 hover:text-red-300 text-xs uppercase font-bold">Malsano +</button><button onclick="addProcess('seg-i', 'protective')" class="text-emerald-400 hover:text-emerald-300 text-xs uppercase font-bold ml-2">Protector +</button></div></div>
+                    <div class="adobe-panel p-6 border-t-4 border-blue-600 bg-white"><h3 class="text-sm font-bold text-blue-700 mb-6 flex items-center gap-2 uppercase tracking-widest"><span class="text-xl">🛡️</span> Seguridad</h3>
+                        <div class="mb-6"><label class="text-[0.65rem] text-stone-400 font-bold uppercase block mb-2">G - General</label><div id="list-seg-g" class="space-y-1 mb-2"></div><textarea id="input-seg-g" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Privatización de la salud y pensiones, violencia estructural del estado..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('seg-g', 'destructive')" class="btn-subtle text-red-600 border-red-200 hover:bg-red-50">Malsano +</button><button onclick="addProcess('seg-g', 'protective')" class="btn-subtle text-emerald-600 border-emerald-200 hover:bg-emerald-50 ml-2">Protector +</button></div></div>
+                        <div class="mb-6"><label class="text-[0.65rem] text-stone-400 font-bold uppercase block mb-2">P - Particular</label><div id="list-seg-p" class="space-y-1 mb-2"></div><textarea id="input-seg-p" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Vulnerabilidad ante desastres naturales, precarización de la seguridad laboral..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('seg-p', 'destructive')" class="btn-subtle text-red-600 border-red-200 hover:bg-red-50">Malsano +</button><button onclick="addProcess('seg-p', 'protective')" class="btn-subtle text-emerald-600 border-emerald-200 hover:bg-emerald-50 ml-2">Protector +</button></div></div>
+                        <div class="mb-6"><label class="text-[0.65rem] text-stone-400 font-bold uppercase block mb-2">I - Individual</label><div id="list-seg-i" class="space-y-1 mb-2"></div><textarea id="input-seg-i" class="adobe-input w-full p-3 h-20 resize-none" placeholder="Ej: Desnutrición crónica, inmunodepresión, trauma físico/psicológico..."></textarea><div class="flex gap-2 justify-end mt-2"><button onclick="addProcess('seg-i', 'destructive')" class="btn-subtle text-red-600 border-red-200 hover:bg-red-50">Malsano +</button><button onclick="addProcess('seg-i', 'protective')" class="btn-subtle text-emerald-600 border-emerald-200 hover:bg-emerald-50 ml-2">Protector +</button></div></div>
                     </div>
                 </div>
-                <div class="text-center w-full pb-10"><button onclick="switchTab('visualizar')" class="btn-ancestral">Visualizar y Analizar ➔</button></div>
+                <div class="text-center w-full pb-10"><button onclick="switchTab('visualizar')" class="btn-next">Visualizar y Analizar ➔</button></div>
             </section>
 
             <!-- 3. SÍNTESIS -->
             <section id="visualizar" class="tab-content hidden pb-10">
                 <div class="flex justify-between items-center mb-8">
-                    <h2 class="text-xl font-bold text-stone-300 font-serif">Matriz de Síntesis</h2>
-                    <button onclick="exportToPDF()" class="bg-stone-800 hover:bg-stone-700 px-5 py-2 rounded text-xs text-stone-300 border border-stone-600 transition">Descargar Reporte PDF</button>
+                    <h2 class="text-xl font-bold text-stone-600 font-serif">Matriz de Síntesis</h2>
+                    <button onclick="exportToPDF()" class="btn-ancestral border-stone-400 text-stone-600 hover:bg-stone-50">Descargar PDF</button>
                 </div>
                 
-                <div id="print-area" class="adobe-panel p-10 w-full shadow-2xl">
-                    <div class="text-center mb-10 pb-6 border-b border-stone-800">
-                        <h1 class="text-2xl font-bold text-amber-500 mb-2 font-serif">Perfil de Determinación Social</h1>
-                        <p class="text-base text-stone-400" id="display-territory">Territorio: Sin definir</p>
+                <div id="print-area" class="adobe-panel p-10 w-full shadow-2xl bg-white">
+                    <div class="text-center mb-10 pb-6 border-b border-stone-200">
+                        <h1 class="text-2xl font-bold text-amber-700 mb-2 font-serif">Perfil de Determinación Social</h1>
+                        <p class="text-base text-stone-500" id="display-territory">Territorio: Sin definir</p>
                     </div>
                     <div id="table-container" class="mb-12"></div>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pt-8 border-t border-stone-800">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pt-8 border-t border-stone-200">
                         <!-- Radar -->
                         <div>
-                            <h4 class="text-sm font-bold text-stone-500 mb-6 uppercase tracking-widest text-center">Balance de Fuerzas</h4>
+                            <h4 class="text-sm font-bold text-stone-400 mb-6 uppercase tracking-widest text-center">Balance de Fuerzas</h4>
                             <div class="h-64"><canvas id="radarChart"></canvas></div>
-                            <div class="mt-4 p-4 border border-stone-700 bg-black/20 rounded">
-                                <h4 class="font-bold text-amber-600 mb-2 text-xs uppercase">Interpretación del Balance:</h4>
-                                <p class="text-xs text-stone-300">Este gráfico compara la carga de procesos destructivos (Rojo) frente al potencial de los procesos protectores (Verde) en cada dimensión. Una brecha amplia hacia el rojo indica alta vulnerabilidad.</p>
+                            <div class="mt-4 p-4 border border-stone-200 bg-stone-50 rounded">
+                                <h4 class="font-bold text-amber-700 mb-2 text-xs uppercase">Interpretación del Balance:</h4>
+                                <p class="text-xs text-stone-600">Este gráfico compara la carga de procesos destructivos (Rojo) frente al potencial de los procesos protectores (Verde).</p>
                             </div>
                         </div>
                         
                         <!-- Subsunción Estilizada -->
                         <div>
-                            <h4 class="text-sm font-bold text-stone-500 mb-6 uppercase tracking-widest text-center">Subsunción Dialéctica</h4>
+                            <h4 class="text-sm font-bold text-stone-400 mb-6 uppercase tracking-widest text-center">Subsunción Dialéctica</h4>
                             <div class="subsumption-wrapper" id="subsumption-graphic"></div>
-                            <div class="flex flex-wrap justify-center gap-4 mt-8 text-[0.6rem] text-stone-500 uppercase tracking-wider">
-                                <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-600"></span> Sustentabilidad</span>
-                                <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-red-700"></span> Soberanía</span>
-                                <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-amber-600"></span> Solidaridad</span>
-                                <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-sky-600"></span> Seguridad</span>
+                            <!-- LEYENDA CLARA -->
+                            <div class="flex flex-wrap justify-center gap-4 mt-6 text-xs text-stone-500">
+                                <span class="flex items-center gap-1"><div class="w-3 h-3 rounded-full border border-stone-300" style="background:#059669"></div> Sustentabilidad</span>
+                                <span class="flex items-center gap-1"><div class="w-3 h-3 rounded-full border border-stone-300" style="background:#b91c1c"></div> Soberanía</span>
+                                <span class="flex items-center gap-1"><div class="w-3 h-3 rounded-full border border-stone-300" style="background:#d97706"></div> Solidaridad</span>
+                                <span class="flex items-center gap-1"><div class="w-3 h-3 rounded-full border border-stone-300" style="background:#0284c7"></div> Seguridad</span>
                             </div>
-                            <div class="mt-4 p-4 border border-stone-700 bg-black/20 rounded">
-                                <h4 class="font-bold text-amber-600 mb-2 text-xs uppercase">Nota Conceptual:</h4>
-                                <p class="text-xs text-stone-300">Esta gráfica visualiza la <strong>Reproducción Social</strong>: cómo los procesos estructurales (General) envuelven y determinan los modos de vida grupales (Particular), los cuales a su vez condicionan los estilos de vida y la biología individual (Individual). Los puntos de color representan los <strong>Procesos Malsanos</strong> identificados.</p>
+                            <div class="mt-4 p-4 border border-stone-200 bg-stone-50 rounded">
+                                <h4 class="font-bold text-amber-700 mb-2 text-xs uppercase">Nota Conceptual:</h4>
+                                <p class="text-xs text-stone-600">Esta gráfica visualiza la <strong>Reproducción Social</strong>: cómo los procesos estructurales (General) envuelven y determinan los modos de vida grupales (Particular), los cuales condicionan lo Individual.</p>
                             </div>
                         </div>
                     </div>
@@ -324,28 +394,28 @@
             <section id="recomendaciones" class="tab-content hidden pb-10">
                 <div class="max-w-[95%] mx-auto">
                     <div id="praxis-print-area">
-                        <h2 class="text-xl font-bold text-stone-300 font-serif mb-6">Matriz de Acción Crítica</h2>
-                        <div class="adobe-panel p-8 mb-8">
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-center border-b border-stone-800 pb-4">
+                        <h2 class="text-xl font-bold text-stone-600 font-serif mb-6">Matriz de Acción Crítica</h2>
+                        <div class="adobe-panel p-8 mb-8 bg-white">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-center border-b border-stone-200 pb-4">
                                 <div class="hidden md:block"></div>
-                                <div class="text-red-400 font-bold uppercase text-xs tracking-widest">🛡️ Prevención (Frenar lo Malsano)</div>
-                                <div class="text-emerald-500 font-bold uppercase text-xs tracking-widest">🌱 Promoción (Potenciar lo Protector)</div>
+                                <div class="text-red-700 font-bold uppercase text-xs tracking-widest">🛡️ Prevención (Frenar lo Malsano)</div>
+                                <div class="text-emerald-700 font-bold uppercase text-xs tracking-widest">🌱 Promoción (Potenciar lo Protector)</div>
                             </div>
                             
                             <!-- Filas -->
                             <div class="space-y-8">
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                    <div class="flex flex-col justify-center"><h4 class="font-bold text-amber-600 text-sm">GENERAL</h4><p class="text-xs text-stone-500">Nivel Estratégico</p></div>
+                                    <div class="flex flex-col justify-center"><h4 class="font-bold text-amber-700 text-sm">GENERAL</h4><p class="text-xs text-stone-400">Nivel Estratégico</p></div>
                                     <textarea id="praxis-g-prev" class="adobe-input w-full p-4 rounded text-sm resize-none h-32" placeholder="Acciones preventivas..."></textarea>
                                     <textarea id="praxis-g-prom" class="adobe-input w-full p-4 rounded text-sm resize-none h-32" placeholder="Acciones promotoras..."></textarea>
                                 </div>
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                    <div class="flex flex-col justify-center"><h4 class="font-bold text-amber-600 text-sm">PARTICULAR</h4><p class="text-xs text-stone-500">Nivel Táctico</p></div>
+                                    <div class="flex flex-col justify-center"><h4 class="font-bold text-amber-600 text-sm">PARTICULAR</h4><p class="text-xs text-stone-400">Nivel Táctico</p></div>
                                     <textarea id="praxis-p-prev" class="adobe-input w-full p-4 rounded text-sm resize-none h-32" placeholder="Acciones preventivas..."></textarea>
                                     <textarea id="praxis-p-prom" class="adobe-input w-full p-4 rounded text-sm resize-none h-32" placeholder="Acciones promotoras..."></textarea>
                                 </div>
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                    <div class="flex flex-col justify-center"><h4 class="font-bold text-amber-600 text-sm">INDIVIDUAL</h4><p class="text-xs text-stone-500">Nivel Puntual</p></div>
+                                    <div class="flex flex-col justify-center"><h4 class="font-bold text-amber-700 text-sm">INDIVIDUAL</h4><p class="text-xs text-stone-400">Nivel Puntual</p></div>
                                     <textarea id="praxis-i-prev" class="adobe-input w-full p-4 rounded text-sm resize-none h-32" placeholder="Acciones preventivas..."></textarea>
                                     <textarea id="praxis-i-prom" class="adobe-input w-full p-4 rounded text-sm resize-none h-32" placeholder="Acciones promotoras..."></textarea>
                                 </div>
@@ -353,8 +423,8 @@
                         </div>
                     </div>
                     <div class="text-center pb-8 flex flex-col items-center gap-4">
-                         <button onclick="exportPraxisPDF()" class="bg-stone-800 hover:bg-stone-700 px-6 py-3 rounded text-xs text-white border border-stone-600">🖨️ Descargar Plan</button>
-                         <button onclick="switchTab('himupac')" class="btn-next text-amber-500">Método HiMupAC ➔</button>
+                         <button onclick="exportPraxisPDF()" class="btn-ancestral border-stone-500 text-stone-600 hover:bg-stone-50">🖨️ Descargar Plan</button>
+                         <button onclick="switchTab('himupac')" class="btn-next text-amber-700 font-bold bg-amber-50 border-amber-300">Método HiMupAC ➔</button>
                     </div>
                 </div>
             </section>
@@ -362,49 +432,49 @@
             <!-- 5. HIMUPAC -->
             <section id="himupac" class="tab-content hidden pb-10">
                 <div class="max-w-[95%] mx-auto">
-                    <div class="adobe-panel p-5 mb-8 flex flex-wrap gap-6 items-center justify-between border-l-4 border-amber-600">
-                        <div><h3 class="font-bold text-amber-500 text-lg">Configuración de la Propuesta</h3></div>
+                    <div class="adobe-panel p-5 mb-8 flex flex-wrap gap-6 items-center justify-between border-l-4 border-amber-600 bg-white">
+                        <div><h3 class="font-bold text-amber-700 text-lg">Configuración de la Propuesta</h3></div>
                         <div class="flex gap-4">
-                            <div><label class="text-[0.65rem] text-stone-500 block mb-1 uppercase tracking-wider">Facilitador</label><input type="text" id="him-autor" placeholder="Nombre..." class="adobe-input px-3 py-1 rounded text-sm w-56"></div>
-                            <div><label class="text-[0.65rem] text-stone-500 block mb-1 uppercase tracking-wider">Fecha</label><input type="date" id="him-fecha" class="adobe-input px-3 py-1 rounded text-sm"></div>
+                            <div><label class="text-[0.65rem] text-stone-400 block mb-1 uppercase tracking-wider">Facilitador</label><input type="text" id="him-autor" placeholder="Nombre..." class="adobe-input px-3 py-1 rounded text-sm w-56"></div>
+                            <div><label class="text-[0.65rem] text-stone-400 block mb-1 uppercase tracking-wider">Fecha</label><input type="date" id="him-fecha" class="adobe-input px-3 py-1 rounded text-sm"></div>
                         </div>
                     </div>
                     
                     <div class="text-center mb-10">
-                        <h2 class="text-3xl font-black text-amber-500 mb-3 tracking-tight">Método HiMupAC</h2>
-                        <p class="text-stone-400 max-w-3xl mx-auto font-light leading-relaxed">Historias Musicales para el Aprendizaje Colectivo: Una propuesta metodológica de educación para la salud desde el paradigma crítico.</p>
+                        <h2 class="text-3xl font-black text-amber-600 mb-3 tracking-tight">Método HiMupAC</h2>
+                        <p class="text-stone-500 max-w-3xl mx-auto font-light leading-relaxed">Historias Musicales para el Aprendizaje Colectivo: Una propuesta metodológica de educación para la salud desde el paradigma crítico.</p>
                         <a href="https://journals.sagepub.com/doi/10.1177/17579759251334393" target="_blank" class="text-xs text-amber-700 hover:text-amber-500 mt-2 block underline decoration-dotted underline-offset-4">Ver Artículo Completo (DOI)</a>
                     </div>
                     
                     <!-- Paso 1 -->
-                    <div class="adobe-panel p-8 mb-8">
-                        <h3 class="text-lg font-bold text-amber-500 mb-6 flex items-center gap-3"><span class="bg-amber-700 text-stone-900 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black">1</span> Selección de Procesos Críticos</h3>
+                    <div class="adobe-panel p-8 mb-8 bg-white">
+                        <h3 class="text-lg font-bold text-amber-600 mb-6 flex items-center gap-3"><span class="bg-amber-700 text-stone-100 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black">1</span> Selección de Procesos Críticos</h3>
                         <p class="text-sm text-stone-400 mb-4 font-light">Seleccione los procesos malsanos (rojos) identificados para convertirlos en el "conflicto" de la historia.</p>
-                        <div id="himupac-checklist" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-h-60 overflow-y-auto p-4 bg-black/20 rounded border border-stone-800 mb-4"></div>
+                        <div id="himupac-checklist" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-h-60 overflow-y-auto p-4 bg-stone-50 rounded border border-stone-200 mb-4"></div>
                         <div id="himupac-selected-list" class="flex flex-wrap gap-2 min-h-[40px] p-2"></div>
                     </div>
                     
                     <!-- Paso 2 -->
-                    <div class="adobe-panel p-8 mb-8">
-                        <h3 class="text-lg font-bold text-amber-500 mb-6 flex items-center gap-3"><span class="bg-amber-700 text-stone-900 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black">2</span> Fundamentos</h3>
+                    <div class="adobe-panel p-8 mb-8 bg-white">
+                        <h3 class="text-lg font-bold text-amber-600 mb-6 flex items-center gap-3"><span class="bg-amber-700 text-stone-100 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black">2</span> Fundamentos</h3>
                         <div class="grid md:grid-cols-2 gap-8">
-                            <div class="p-6 rounded border border-amber-900/30 bg-amber-900/10">
-                                <h4 class="font-bold text-amber-600 text-sm mb-2 uppercase tracking-wider">Interculturalidad Crítica</h4>
-                                <p class="text-sm text-stone-400 leading-relaxed">El método no busca imponer conocimientos biomédicos, sino generar un diálogo horizontal. Reconoce y valida las cosmovisiones, lenguajes y experiencias de la comunidad.</p>
+                            <div class="p-6 rounded border border-amber-200 bg-amber-50">
+                                <h4 class="font-bold text-amber-700 text-sm mb-2 uppercase tracking-wider">Interculturalidad Crítica</h4>
+                                <p class="text-sm text-stone-600 leading-relaxed">El método no busca imponer conocimientos biomédicos, sino generar un diálogo horizontal de saberes. Reconoce y valida las cosmovisiones, lenguajes y experiencias de la comunidad como fuente legítima de conocimiento.</p>
                             </div>
-                            <div class="p-6 rounded border border-amber-900/30 bg-amber-900/10">
-                                <h4 class="font-bold text-amber-600 text-sm mb-2 uppercase tracking-wider">Reconocimiento de Saberes</h4>
-                                <p class="text-sm text-stone-400 leading-relaxed">La música y la narrativa son vehículos de memoria. Al usar estéticas propias del territorio, se activa la emoción y el recuerdo para un aprendizaje significativo.</p>
+                            <div class="p-6 rounded border border-amber-200 bg-amber-50">
+                                <h4 class="font-bold text-amber-700 text-sm mb-2 uppercase tracking-wider">Reconocimiento de Saberes</h4>
+                                <p class="text-sm text-stone-600 leading-relaxed">La música y la narrativa son vehículos de memoria colectiva. Al usar estéticas propias del territorio, se activa la emoción y el recuerdo, permitiendo un aprendizaje significativo y situado.</p>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Paso 3 -->
-                    <div class="adobe-panel p-8 mb-8">
-                        <h3 class="text-lg font-bold text-amber-500 mb-6 flex items-center gap-3"><span class="bg-amber-700 text-stone-900 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black">3</span> Co-construcción</h3>
+                    <div class="adobe-panel p-8 mb-8 bg-white">
+                        <h3 class="text-lg font-bold text-amber-600 mb-6 flex items-center gap-3"><span class="bg-amber-700 text-stone-100 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black">3</span> Co-construcción</h3>
                         
                         <div class="mb-8">
-                            <h4 class="text-xs font-bold text-stone-500 mb-3 uppercase tracking-widest border-b border-stone-800 pb-1">A. Narrativa (El Guion)</h4>
+                            <h4 class="text-xs font-bold text-stone-400 mb-3 uppercase tracking-widest border-b border-stone-200 pb-1">A. Narrativa (El Guion)</h4>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <textarea id="him-personajes" class="adobe-input w-full p-4 rounded text-sm h-32 resize-none" placeholder="Personajes: ¿Quiénes protagonizan la historia? (Ej: Doña María, el río enfermo, el empresario...). Describa su rol social."></textarea>
                                 <textarea id="him-trama" class="adobe-input w-full p-4 rounded text-sm h-32 resize-none" placeholder="Trama: ¿Cómo el proceso malsano seleccionado afecta la vida cotidiana de los personajes? ¿Cuál es el nudo crítico que deben enfrentar?"></textarea>
@@ -412,32 +482,32 @@
                         </div>
 
                         <div class="mb-8">
-                            <h4 class="text-xs font-bold text-stone-500 mb-3 uppercase tracking-widest border-b border-stone-800 pb-1">B. Sonoridad (Identidad)</h4>
+                            <h4 class="text-xs font-bold text-stone-400 mb-3 uppercase tracking-widest border-b border-stone-200 pb-1">B. Sonoridad (Identidad)</h4>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <input id="him-ritmo" type="text" class="adobe-input w-full p-4 rounded text-sm" placeholder="Ritmo Musical (Ej: Cumbia, Bambuco, Rap, Champeta...)">
-                                <textarea id="him-instrumentos" class="adobe-input w-full p-4 rounded text-sm h-24 resize-none" placeholder="Instrumentos y Paisaje Sonoro: ¿Qué instrumentos locales usaremos? ¿Incluiremos sonidos ambientales (agua, tráfico)?"></textarea>
+                                <textarea id="him-instrumentos" class="adobe-input w-full p-4 rounded text-sm h-24 resize-none" placeholder="Instrumentos y Paisaje Sonoro: ¿Qué instrumentos locales usaremos? ¿Incluiremos sonidos ambientales del territorio (agua, tráfico, viento)?"></textarea>
                             </div>
                         </div>
 
                         <div>
-                            <h4 class="text-xs font-bold text-stone-500 mb-3 uppercase tracking-widest border-b border-stone-800 pb-1">C. Aprendizaje Colectivo</h4>
+                            <h4 class="text-xs font-bold text-stone-400 mb-3 uppercase tracking-widest border-b border-stone-200 pb-1">C. Aprendizaje Colectivo</h4>
                             <textarea id="him-mensaje" class="adobe-input w-full p-4 rounded text-sm h-32 resize-none" placeholder="Mensaje Transformador (Decodificación): ¿Qué reflexión crítica o acción movilizadora queremos detonar en la comunidad al escuchar esta historia?"></textarea>
                         </div>
                     </div>
                     
                     <div class="text-center pb-8 mt-6">
-                         <button onclick="exportHimupacPDF()" class="btn-ancestral border-amber-600 text-amber-500 hover:text-amber-100 hover:bg-amber-900/50">🖨️ Descargar Propuesta Formal</button>
+                         <button onclick="exportHimupacPDF()" class="btn-ancestral border-amber-600 text-amber-600 hover:bg-amber-50">🖨️ Descargar Propuesta Formal</button>
                     </div>
                 </div>
             </section>
 
-            <footer class="mt-16 py-10 border-t border-stone-800 text-center text-stone-600 bg-black/20">
+            <footer class="mt-16 py-10 border-t border-stone-300 text-center text-stone-500 bg-stone-100">
                 <div class="max-w-3xl mx-auto px-4">
-                    <p class="font-bold text-stone-500 mb-1 uppercase text-xs tracking-widest">Diseño Conceptual</p>
-                    <p class="text-base text-amber-600 font-bold mb-1">Carlos Duvan Páez Mora</p>
+                    <p class="font-bold text-stone-400 mb-1 uppercase text-xs tracking-widest">Diseño Conceptual y Pedagógico:</p>
+                    <p class="text-base text-amber-700 font-bold mb-1">Carlos Duvan Páez Mora</p>
                     <p class="text-xs mb-1">Docente Maestría en Salud Pública</p>
                     <p class="text-xs mb-4">Fundación Universitaria del Área Andina, Bogotá</p>
-                    <hr class="border-stone-800 w-12 mx-auto my-6">
+                    <hr class="border-stone-300 w-12 mx-auto my-6">
                     <p class="text-[0.65rem] italic opacity-60">Basado en la obra "Epidemiología Crítica y la Salud de los Pueblos" de Jaime Breilh (2003/2023).</p>
                     <p class="text-[0.65rem] italic opacity-40 mt-1">Desarrollado con asistencia de IA (Gemini Google)</p>
                 </div>
@@ -471,7 +541,7 @@
         function renderListItem(container, text, type, node, dim, index) {
             const itemDiv = document.createElement('div');
             itemDiv.className = `process-item ${type === 'destructive' ? 'item-destructive' : 'item-protective'}`;
-            itemDiv.innerHTML = `<span class="flex-grow text-stone-200">${text}</span><button onclick="removeItem('${node}', '${dim}', ${index}, this)" class="delete-btn">✕</button>`;
+            itemDiv.innerHTML = `<span class="flex-grow text-stone-700">${text}</span><button onclick="removeItem('${node}', '${dim}', ${index}, this)" class="delete-btn">✕</button>`;
             container.appendChild(itemDiv);
         }
 
@@ -524,13 +594,14 @@
                     datasets: [{ label: 'Malsano', data: dataDest, backgroundColor: 'rgba(190, 18, 60, 0.4)', borderColor: '#be123c', borderWidth: 2 }, 
                                { label: 'Protector', data: dataProt, backgroundColor: 'rgba(21, 128, 61, 0.4)', borderColor: '#15803d', borderWidth: 2 }]
                 },
-                options: { animation: false, responsive: true, maintainAspectRatio: false, scales: { r: { grid: { color: 'rgba(255,255,255,0.1)' }, pointLabels: { color: 'white', font: { size: 11 } }, ticks: { display: false } } }, plugins: { legend: { labels: { color: 'white' } } } }
+                options: { animation: false, responsive: true, maintainAspectRatio: false, scales: { r: { grid: { color: '#e5e5e5' }, pointLabels: { color: '#44403c', font: { size: 11 } }, ticks: { display: false } } }, plugins: { legend: { labels: { color: '#44403c' } } } }
             });
         }
 
         function renderSubsumptionGraphic() {
             const container = document.getElementById('subsumption-graphic');
             container.innerHTML = `<div class="circle-general"><div class="circle-label" style="top: -10px;">GENERAL</div><div id="ring-g"></div><div class="circle-particular"><div class="circle-label" style="top: -10px;">PARTICULAR</div><div id="ring-p"></div><div class="circle-individual"><div class="circle-label" style="top: -10px;">INDIVIDUAL</div><div id="ring-i"></div></div></div></div>`;
+            
             const distributeDots = (dim, elementId, minR, maxR) => {
                 const ring = document.getElementById(elementId);
                 ['sus', 'sob', 'sol', 'seg'].forEach(node => {
@@ -549,10 +620,11 @@
                     });
                 });
             };
-            // Radii (320px, 220px, 120px) -> Center offset
-            distributeDots('i', 'ring-i', 10, 50);   
-            distributeDots('p', 'ring-p', 70, 100);  
-            distributeDots('g', 'ring-g', 120, 150); 
+            // Radii tuned for 420px, 270px, 120px circles. Center is 0,0.
+            // Individual (0-60), Particular (60-125), General (125-190)
+            distributeDots('i', 'ring-i', 10, 50);   // Individual 
+            distributeDots('p', 'ring-p', 70, 120);  // Particular 
+            distributeDots('g', 'ring-g', 140, 185); // General 
         }
 
         function renderHimupacSection() {
@@ -566,7 +638,7 @@
                         hasItems = true;
                         const el = document.createElement('div');
                         const isSelected = himupacSelection.includes(item.text);
-                        el.className = `selectable-item bg-black/20 px-3 py-2 rounded text-xs mb-1 border-l-2 border-red-500 text-stone-300 ${isSelected ? 'bg-amber-900/30 border-amber-500' : ''}`;
+                        el.className = `selectable-item bg-stone-50 px-3 py-2 rounded text-xs mb-1 border-l-2 border-red-500 text-stone-600 ${isSelected ? 'bg-amber-50 border-amber-500' : ''}`;
                         el.innerHTML = `<span class="font-bold text-red-400 text-[0.65rem] uppercase mr-2">[${nodeNames[node]} - ${dim.toUpperCase()}]:</span> ${item.text}`;
                         el.onclick = () => toggleHimupacSelection(item.text, el);
                         sourceList.appendChild(el);
@@ -656,12 +728,12 @@
         function exportToPDF() {
             const el = document.getElementById('print-area');
             const style = document.createElement('style'); style.innerHTML = `.sub-tag:after { display:none; }`; el.appendChild(style);
-            html2pdf().set({ margin:0.3, filename:`Determinacion.pdf`, image:{type:'jpeg',quality:0.98}, html2canvas:{scale:2, backgroundColor:'#1a120b'}, jsPDF:{unit:'in',format:'legal',orientation:'landscape'} }).from(el).save();
+            html2pdf().set({ margin:0.3, filename:`Determinacion.pdf`, image:{type:'jpeg',quality:0.98}, html2canvas:{scale:2, backgroundColor:'#fafaf9'}, jsPDF:{unit:'in',format:'legal',orientation:'landscape'} }).from(el).save();
         }
 
         function exportPraxisPDF() {
             const el = document.getElementById('praxis-print-area');
-            html2pdf().set({ margin:0.5, filename:`PlanAccion.pdf`, image:{type:'jpeg',quality:0.98}, html2canvas:{scale:2, backgroundColor:'#1a120b'}, jsPDF:{unit:'in',format:'letter',orientation:'landscape'} }).from(el).save();
+            html2pdf().set({ margin:0.5, filename:`PlanAccion.pdf`, image:{type:'jpeg',quality:0.98}, html2canvas:{scale:2, backgroundColor:'#fafaf9'}, jsPDF:{unit:'in',format:'letter',orientation:'landscape'} }).from(el).save();
         }
     </script>
 </body>
